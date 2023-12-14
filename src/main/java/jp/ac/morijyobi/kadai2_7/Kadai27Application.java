@@ -1,0 +1,13 @@
+package jp.ac.morijyobi.kadai2_7;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Kadai27Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Kadai27Application.class, args);
+    }
+
+}
