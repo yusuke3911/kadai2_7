@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>ログイン</h2>
+    <div th:if="${param.error}">
+        ID、またはパスワードが違います
+    </div>
+    <form th:action="@{/login}" method="post">
+        <p>ID:<input type="text" name="username"></p>
+        <p>パスワード:<input type="password" name="password"></p>
+        <button type="submit">ログイン</button>
+    </form>
+</body>
+</html>

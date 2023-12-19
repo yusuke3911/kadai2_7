@@ -16,6 +16,12 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/").permitAll()
                         .anyRequest().authenticated()
+                ).formLogin(login -> login
+                        .loginProcessingUrl("/login")
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/")
+                        .failureUrl("/login?error")
+                        .permitAll()
                 );
 
         return http.build();
