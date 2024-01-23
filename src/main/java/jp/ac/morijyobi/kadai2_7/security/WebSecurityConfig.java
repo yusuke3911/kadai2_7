@@ -17,6 +17,8 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/").permitAll()
+                        .requestMatchers("common/**").permitAll()
+                        .requestMatchers("tag/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 ).formLogin(login -> login
                         .loginProcessingUrl("/login")
@@ -29,8 +31,8 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder(){
-//        return new BCryptPasswordEncoder();
-//    }
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 }

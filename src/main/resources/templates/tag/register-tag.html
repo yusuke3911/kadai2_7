@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+        <div th:if="${message}" th:text="${message}"></div>
+        <h3>タグ登録</h3>
+        <form th:action="@{/tag/register}" th:object="${tagForm}" method="post">
+            <div>
+                <label for="tag-name">タグ名</label>
+                <input type="text" id="tag-name" name="tagName" th:field="*{tagName}" required minlength="1" maxlength="32">
+                <div th:errors="*{tagName}">error message</div>
+            </div>
+
+            <button type="submit">登録</button>
+        </form>
 </body>
 </html>

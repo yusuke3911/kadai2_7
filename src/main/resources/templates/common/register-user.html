@@ -5,6 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-  ユーザー登録
+    ユーザー登録
+    <form th:action="@{/common/register-exe}" method="post" th:object="${userForm}">
+        <div>
+            <label>ユーザー名</label>
+            <input type="text" id="username" name="username" th:field="*{username}" required minlength="5" maxlength="64">
+            <div th:errors="*{username}"></div>
+        </div>
+        <div>
+            <label>パスワード</label>
+            <input type="password" id="password" name="password" th:field="*{password}" required minlength="5" maxlength="64">
+            <div th:errors="*{password}"></div>
+        </div>
+            <label>名前</label>
+            <input type="text" id="name" name="name" th:field="*{name}" maxlength="255">
+            <div th:errors="*{name}"></div>
+        </div>
+        <button type="submit">登録</button>
+    </form>
 </body>
-</html>
