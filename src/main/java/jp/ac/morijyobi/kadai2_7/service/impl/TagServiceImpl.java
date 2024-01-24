@@ -6,6 +6,8 @@ import jp.ac.morijyobi.kadai2_7.mapper.TagsMapper;
 import jp.ac.morijyobi.kadai2_7.service.TagService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TagServiceImpl implements TagService{
     private final TagsMapper tagsMapper;
@@ -22,5 +24,10 @@ public class TagServiceImpl implements TagService{
         tagsMapper.insertTag(tag);
 
         return null;
+    }
+
+    @Override
+    public List<Tag> getAllTags() {
+        return tagsMapper.selectAllTags();
     }
 }

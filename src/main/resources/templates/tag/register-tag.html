@@ -13,8 +13,24 @@
                 <input type="text" id="tag-name" name="tagName" th:field="*{tagName}" required minlength="1" maxlength="32">
                 <div th:errors="*{tagName}">error message</div>
             </div>
-
             <button type="submit">登録</button>
         </form>
+        <h3>タグ一覧</h3>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>タグ名</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tag : ${tagList}">
+                    <td><span th:text="${tag.id}"></span></td>
+                    <td><span th:text="${tag.tagName}"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 </body>
 </html>
