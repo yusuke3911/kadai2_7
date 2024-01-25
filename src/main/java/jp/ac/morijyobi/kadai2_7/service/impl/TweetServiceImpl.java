@@ -10,6 +10,8 @@ import jp.ac.morijyobi.kadai2_7.service.TweetService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class TweetServiceImpl implements TweetService {
 
@@ -38,5 +40,10 @@ public class TweetServiceImpl implements TweetService {
             tweetTag.setTagId(tagId);
             tweetTagMapper.insertTweetTag(tweetTag);
         }
+    }
+
+    @Override
+    public List<Tweet> getTweetByKeyword(String keyword) {
+        return tweetMapper.selectTweetByKeyWord(keyword);
     }
 }

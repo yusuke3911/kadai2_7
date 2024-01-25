@@ -1,6 +1,7 @@
 package jp.ac.morijyobi.kadai2_7.controller;
 
 import jp.ac.morijyobi.kadai2_7.bean.entity.Tag;
+import jp.ac.morijyobi.kadai2_7.bean.entity.Tweet;
 import jp.ac.morijyobi.kadai2_7.bean.form.TweetForm;
 import jp.ac.morijyobi.kadai2_7.service.TagService;
 import jp.ac.morijyobi.kadai2_7.service.TweetService;
@@ -11,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -58,4 +60,12 @@ public class TweetController {
         return "redirect:/tweet/home";
     }
 
+    @GetMapping("/list")
+    public String tweetList(@RequestParam(defaultValue = "") String keyword,
+                            Model model){
+        List<Tweet> tweetList = tweetService.getTweetByKeyword(keyword);
+        model.addAttribute("tweetList", tweetList);
+
+        return "tweet/tweet-list";
+    }
 }
