@@ -3,8 +3,10 @@ package jp.ac.morijyobi.kadai2_7.controller;
 import jp.ac.morijyobi.kadai2_7.bean.entity.Tag;
 import jp.ac.morijyobi.kadai2_7.bean.entity.Tweet;
 import jp.ac.morijyobi.kadai2_7.bean.form.TweetForm;
+import jp.ac.morijyobi.kadai2_7.security.LoginUserDetails;
 import jp.ac.morijyobi.kadai2_7.service.TagService;
 import jp.ac.morijyobi.kadai2_7.service.TweetService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,7 +32,11 @@ public class TweetController {
     }
 
     @GetMapping("/home")
-    public String sarasuBook(Model model) {
+    public String sarasuBook(@AuthenticationPrincipal LoginUserDetails user,
+                             Model model) {
+        String name = user.getUsername();
+        model.addAttribute("username", name);
+
 
         TweetForm tweetForm = new TweetForm();
         model.addAttribute("tweetForm", tweetForm);
@@ -43,9 +49,14 @@ public class TweetController {
 
     @PostMapping("/home")
     public String tweetExe(@Validated TweetForm tweetForm,
+                           @AuthenticationPrincipal LoginUserDetails user,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes,
                            Model model){
+
+        String name = user.getUsername();
+        model.addAttribute("username", name);
+
         if (bindingResult.hasErrors()){
 
             List<Tag> tagList = tagService.getAllTags();
@@ -54,7 +65,7 @@ public class TweetController {
             return "tweet/home-tweet";
         }
 
-        tweetService.tweetSentence(tweetForm);
+        tweetService.tweetSentence(tweetForm, user);
         redirectAttributes.addFlashAttribute("message", "つぶやきました");
 
         return "redirect:/tweet/home";

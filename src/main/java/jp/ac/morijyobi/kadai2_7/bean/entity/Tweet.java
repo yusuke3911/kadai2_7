@@ -3,16 +3,16 @@ package jp.ac.morijyobi.kadai2_7.bean.entity;
 import java.time.LocalDateTime;
 
 public class Tweet {
-    private int id;
     private String sentence;
     private LocalDateTime dateTime;
+    private String username;
 
-    public int getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getSentence() {

@@ -5,8 +5,9 @@ import jp.ac.morijyobi.kadai2_7.bean.entity.TweetTag;
 import jp.ac.morijyobi.kadai2_7.bean.form.TweetForm;
 import jp.ac.morijyobi.kadai2_7.mapper.TweetMapper;
 import jp.ac.morijyobi.kadai2_7.mapper.TweetTagMapper;
-import jp.ac.morijyobi.kadai2_7.mapper.UsersMapper;
+import jp.ac.morijyobi.kadai2_7.security.LoginUserDetails;
 import jp.ac.morijyobi.kadai2_7.service.TweetService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,20 +18,24 @@ public class TweetServiceImpl implements TweetService {
 
     private final TweetMapper tweetMapper;
     private final TweetTagMapper tweetTagMapper;
-    private final UsersMapper usersMapper;
 
-    public TweetServiceImpl(TweetMapper tweetMapper, TweetTagMapper tweetTagMapper, UsersMapper usersMapper) {
+    public TweetServiceImpl(TweetMapper tweetMapper, TweetTagMapper tweetTagMapper) {
         this.tweetMapper = tweetMapper;
         this.tweetTagMapper = tweetTagMapper;
-        this.usersMapper = usersMapper;
+    }
+
+    @Override
+    public void tweetSentence(TweetForm tweetForm) {
+
     }
 
     @Override
     @Transactional
-    public void tweetSentence(TweetForm tweetForm) {
+    public void tweetSentence(TweetForm tweetForm, @AuthenticationPrincipal LoginUserDetails user) {
 
         Tweet tweet = new Tweet();
         tweet.setSentence(tweetForm.getSentence());
+        tweet.setUsername(user.getUsername());
 
         tweetMapper.insertTweet(tweet);
 

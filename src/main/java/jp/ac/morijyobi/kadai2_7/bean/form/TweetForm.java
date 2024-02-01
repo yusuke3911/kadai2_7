@@ -12,8 +12,16 @@ public class TweetForm {
     @NotBlank
     private String sentence;
     private List<Integer> tagIdList;
-    @DateTimeFormat(pattern = "HH:mm yyyy年MM月dd日")
     private LocalDateTime dateTime;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getSentence() {
         return sentence;
@@ -38,4 +46,5 @@ public class TweetForm {
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
+
 }

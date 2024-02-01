@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class GeneralController {
     @GetMapping("/")
-    public String index(Model model){ return "layout"; }
+    public String index(Model model){ return "/layout"; }
 
     @GetMapping("login")
     public String login(Model model){

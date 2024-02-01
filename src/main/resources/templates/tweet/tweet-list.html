@@ -14,6 +14,7 @@
     </form>
 
     <div  th:each="tweet : ${tweetList}">
+        <p th:text="${tweet.username}"></p>
         <p th:text="${tweet.sentence}"></p>
         <p th:text="${tweet.dateTime}"></p>
     </div>
