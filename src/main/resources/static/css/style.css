@@ -1,0 +1,20 @@
+@charset "UTF-8";
+ button{
+     background: none;
+     border: none;
+ }
+
+#search{
+    position: absolute;
+    z-index: 3;
+    right: 0;
+}
+
+body{
+    padding-top: 5rem;
+}
+
+.tubuyaki{
+    line-height: 1.5;
+    height: 6em;
+}

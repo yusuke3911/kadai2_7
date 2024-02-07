@@ -68,15 +68,15 @@ public class TweetController {
         tweetService.tweetSentence(tweetForm, user);
         redirectAttributes.addFlashAttribute("message", "つぶやきました");
 
-        return "redirect:/tweet/home";
+        return "redirect:/";
     }
 
-    @GetMapping("/list")
-    public String tweetList(@RequestParam(defaultValue = "") String keyword,
-                            Model model){
-        List<Tweet> tweetList = tweetService.getTweetByKeyword(keyword);
-        model.addAttribute("tweetList", tweetList);
-
-        return "tweet/tweet-list";
-    }
+//    @GetMapping("/list")
+//    public String tweetList(@RequestParam(defaultValue = "") String keyword,
+//                            Model model){
+//        List<Tweet> tweetList = tweetService.getTweetByKeyword(keyword);
+//        model.addAttribute("tweetList", tweetList);
+//
+//        return "layout";
+//    }
 }

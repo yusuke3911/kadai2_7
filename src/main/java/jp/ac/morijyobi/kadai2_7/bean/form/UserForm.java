@@ -5,11 +5,9 @@ import jakarta.validation.constraints.Size;
 
 public class UserForm {
     @NotBlank
-    @Size( min = 5, max = 64 )
     private String username;
 
     @NotBlank
-    @Size( min = 6, max = 65 )
     private String password;
 
     @Size( max = 255 )

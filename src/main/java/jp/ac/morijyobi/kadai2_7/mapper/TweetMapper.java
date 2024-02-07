@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface TweetMapper {
 
-    @Insert("INSERT INTO tweet VALUES (0, #{sentence}, now(), #{username})")
+    @Insert("INSERT INTO tweet VALUES (null, #{sentence}, now(), #{username})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insertTweet(Tweet tweet);
 

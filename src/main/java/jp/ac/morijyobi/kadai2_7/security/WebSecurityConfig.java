@@ -19,6 +19,8 @@ public class WebSecurityConfig {
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/common/**").permitAll()
                         .requestMatchers("/tweet/list").permitAll()
+                        .requestMatchers("/tag/**").hasRole("ADMIN")
+                        .requestMatchers("/css/**", "/webjars/**").permitAll()
                         .anyRequest().authenticated()
                 ).formLogin(login -> login
                         .loginProcessingUrl("/login")
